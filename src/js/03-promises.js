@@ -14,7 +14,9 @@ function onClickBtnSubmit(e) {
   const stepDelay = Number(stepInputEl.value);
   const quantityCall = (Number(amountInputEl.value)+ 1);
   let currentDelay = Number(delayInputEl.value);
-  for (let i = 1; i < quantityCall; i += 1) {
+  if (stepDelay < 0 || Number(delayInputEl.value) < 0) {
+   return Notify.warning('Please enter a positive value', {position: 'center-center', timeout: 2000, width: '300px', fontSize: '16px', cssAnimationStyle: 'zoom', pauseOnHover: false, showOnlyTheLastOne: true});
+  } for (let i = 1; i < quantityCall; i += 1) {
     createPromise(i, currentDelay);
     currentDelay += stepDelay;
   };
