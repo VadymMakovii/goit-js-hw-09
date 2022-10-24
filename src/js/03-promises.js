@@ -12,10 +12,14 @@ submitBTnEl.addEventListener('click', onClickBtnSubmit);
 function onClickBtnSubmit(e) {
   e.preventDefault();
   const stepDelay = Number(stepInputEl.value);
-  const quantityCall = (Number(amountInputEl.value)+ 1);
-  let currentDelay = Number(delayInputEl.value);
-  if (stepDelay < 0 || Number(delayInputEl.value) < 0) {
+  const userAmount = Number(amountInputEl.value);
+  const quantityCall = (userAmount + 1);
+  const userDelay = Number(delayInputEl.value);
+  let currentDelay = userDelay;
+  if (stepDelay < 0 || userDelay < 0) {
    return Notify.warning('Please enter a positive value', {position: 'center-center', timeout: 2000, width: '300px', fontSize: '16px', cssAnimationStyle: 'zoom', pauseOnHover: false, showOnlyTheLastOne: true});
+  } else if (userAmount <= 0) {
+    return Notify.warning('Amount value must be greater than zero', {position: 'center-center', timeout: 2000, width: '300px', fontSize: '16px', cssAnimationStyle: 'zoom', pauseOnHover: false, showOnlyTheLastOne: true});
   } for (let i = 1; i < quantityCall; i += 1) {
     createPromise(i, currentDelay);
     currentDelay += stepDelay;
